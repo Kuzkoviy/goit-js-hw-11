@@ -1,5 +1,5 @@
 
-function createMarkup(hitsArray) {
+export default function createMarkup(hitsArray) {
     const gallery = hitsArray
     .reduce((acc, ({
         largeImageURL,
@@ -36,4 +36,7 @@ function createMarkup(hitsArray) {
         </div>
       </li>`
       }), '');
+
+
+      document.querySelector('.list-results').innerHTML = gallery;
 }
