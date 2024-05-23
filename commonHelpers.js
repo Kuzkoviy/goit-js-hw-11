@@ -1,19 +1,27 @@
-import{S as u,i as n}from"./assets/vendor-0fc460d7.js";(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))l(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const a of t.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&l(a)}).observe(document,{childList:!0,subtree:!0});function r(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function l(e){if(e.ep)return;e.ep=!0;const t=r(e);fetch(e.href,t)}})();const d=o=>o.map(({webformatURL:s,largeImageURL:r,tags:l,likes:e,views:t,comments:a,downloads:m})=>`
-  <li class="gallery-item">
-  <a class="gallery-link" href="${r}">
-    <img
-      class="gallery-image"
-      src="${s}"
-      alt="${l}"
-    />
-  </a>
-    <div class="small-content">
-        <small class="text-body-likes">Likes: ${e}</small>
-        <small class="text-body-views">Views: ${t}</small>
-        <small class="text-body-comments">Comments: ${a}</small>
-        <small class="text-body-downloads">Dowloads: ${m}</small>
-    </div>
- 
-    </li>s
-`).join("");new u(".gallery a",{captionsData:"alt",captionDelay:250});const f="24251933-9d29857377778e751e7f0d7a1",y="https://pixabay.com/api/",h=o=>{const s=new URLSearchParams({key:f,q:o,image_type:"photo",orientation:"horizontal",safesearch:!0});return fetch(`${y}?${s}`).then(r=>{if(!r.ok)throw new Error(r.statusText);return r.json()})},i=document.querySelector(".js-gallery"),p=document.querySelector(".js-search-form"),c=document.querySelector(".js-loader");function g(o){o.preventDefault();const s=o.target.elements.searchKeyword.value.trim();if(s===""){i.innerHTML="",o.target.reset(),n.error({title:"Error",message:"Illegal operation",position:"topRight",timeout:2e3});return}i.innerHTML="",c.classList.remove("is-hidden"),h(s).then(r=>{r.totalHits===0&&n.show({message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight",timeout:2e3,color:"red"}),i.innerHTML=d(r.hits)}).catch(r=>console.log(r)).finally(()=>{o.target.reset(),c.classList.add("is-hidden")})}p.addEventListener("submit",g);
+import{S as d,i as c}from"./assets/vendor-8c59ed88.js";(function(){const i=document.createElement("link").relList;if(i&&i.supports&&i.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))l(t);new MutationObserver(t=>{for(const e of t)if(e.type==="childList")for(const o of e.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&l(o)}).observe(document,{childList:!0,subtree:!0});function s(t){const e={};return t.integrity&&(e.integrity=t.integrity),t.referrerPolicy&&(e.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?e.credentials="include":t.crossOrigin==="anonymous"?e.credentials="omit":e.credentials="same-origin",e}function l(t){if(t.ep)return;t.ep=!0;const e=s(t);fetch(t.href,e)}})();const u="24251933-9d29857377778e751e7f0d7a1",h="https://pixabay.com/api/",f=r=>{const i=new URLSearchParams({q:r,key:u,image_type:"photo",orientation:"horizontal",safesearch:!0});return fetch(`${h}?${i}`).then(s=>{if(!s.ok)throw new Error(s.statusText);return s.json()})},p=r=>r.map(({webformatURL:i,largeImageURL:s,tags:l,likes:t,views:e,comments:o,downloads:m})=>`
+         <li class="item-list">
+     <a href="${s}" class="item-list-link">
+         <img class="item-list-img"  height="152"
+         width="300" src="${i}" alt="${l}">
+     </a>
+     <div class='markup-info'>
+         <div class="item-list-info-text">
+             <h3 class="item-list-title">Likes</h3>
+                 <p class="item-list-text">${t}</p>
+         </div>
+         <div class="item-list-info-text">
+             <h3 class="item-list-title">Views</h3>
+                 <p class="item-list-text">${e}</p>
+         </div>
+         <div class="item-list-info-text">
+             <h3 class="item-list-title">Comments</h3>
+                 <p class="item-list-text">${o}</p>
+         </div>
+         <div class="item-list-info-text">
+             <h3 class="item-list-title">Downloads</h3>
+             <p class="item-list-text">${m}</p>
+         </div>
+         </div>
+         </li>
+         `).join(""),y=document.querySelector(".js-search-form"),a=document.querySelector(".js-gallery"),n=document.querySelector(".js-loader"),g=new d("ul.list a",{captionsData:"alt",captionDelay:250,overlayOpacity:.8});function L(r){r.preventDefault();const i=r.target.elements.searchKeyword.value.trim();if(i===""){a.innerHTML="",r.target.reset(),c.show({message:"Input field can not be empty",position:"topRight",timeout:2e3,color:"red"});return}a.innerHTML="",n.classList.remove("is-hidden"),f(i).then(s=>{s.total===0&&c.show({message:"Sorry, there are no images for this query",position:"topRight",timeout:2e3,color:"red"}),a.innerHTML=p(s.hits),g.refresh()}).catch(s=>console.log(s)).finally(()=>{r.target.reset(),n.classList.add("is-hidden")})}y.addEventListener("submit",L);
 //# sourceMappingURL=commonHelpers.js.map
